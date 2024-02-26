@@ -2,4 +2,5 @@
 .Rhistory
 .RData
 .Ruserdata
+data/credit_card_fraud.csv
 app3/
