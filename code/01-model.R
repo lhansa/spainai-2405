@@ -1,35 +1,53 @@
 library(tidyverse)
-library(lubridate)
-library(caret)
-library(ModelMetrics)
+# library(caret)
+# library(ModelMetrics)
+library(tidymodels)
 
-# Suponiendo que df es tu dataframe
+df_credit <- read_csv("data/credit_card_fraud.csv")
 
 # Procesamiento de la hora de la transacción
-df$trans_hour <- hour(hms(substring(df$trans_date_trans_time, 12, 19)))
+df_model <- df_credit |> 
+  select(-merchant, -city, 
+         -contains("lat"), -contains("long"), 
+         -trans_num) |> 
+  mutate(
+    trans_hour = hour(trans_date_trans_time), 
+    trans_date = as.Date(trans_date_trans_time), 
+    trans_date_trans_time = NULL
+  ) 
 
-# One Hot Encoding para 'category'
-df <- dummyVars("~ .", data = df, fullRank = TRUE) %>% 
-  predict(df)
+rec <- recipe(~ ., data = df_model) |> 
+  step_dummy(category, state, job) |> 
+  step_date(
+    dob, trans_date, 
+    features = c("dow", "week", "month"), 
+    keep_original_cols = FALSE
+  ) |> 
+  step_bin2factor(is_fraud)
 
-# Preparación de los datos para el modelo
-df_model <- cbind(df, trans_hour = df$trans_hour, is_fraud = df$is_fraud)
+baked_data <- rec |> 
+  prep(training = df_model) |> 
+  bake(new_data = NULL)
 
-# Definición de las variables independientes X y la variable dependiente y
-X <- df_model %>% select(-is_fraud)
-y <- df_model$is_fraud
 
-# División del conjunto de datos en entrenamiento y prueba
-set.seed(123)
-trainIndex <- createDataPartition(y, p = .8, 
-                                  list = FALSE, 
-                                  times = 1)
-X_train <- X[trainIndex, ]
-Y_train <- y[trainIndex]
-X_test  <- X[-trainIndex, ]
-Y_test  <- y[-trainIndex]
+rf_with_seed <- rand_forest(
+  trees = 100, 
+  mtry = tune(), 
+  mode = "classification"
+) |> 
+  set_engine("ranger", seed = 63233)
 
-# Ajuste del modelo de regresión logística
-model <- glm(is_fraud ~ ., data = df_model[trainIndex, ], family = "binomial")
+fit_rf <- rf_with_seed |> 
+  set_args(mtry = 4) |> 
+  fit(is_fraud ~ ., data = baked_data)
 
-# Asumiendo que continuarás con la evaluación del modelo y su implementación en Shiny posteriormente
+
+parsnip:::tidy.model_fit(fit_rf)
+? parsnip:::predict.model_fit()
+
+
+df_pred <- rec |> 
+  prep(training = df_model) |> 
+  bake(new_data = df_model)
+
+df_pred <- predict(fit_rf, df_pred)
