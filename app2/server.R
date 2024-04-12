@@ -1,31 +1,36 @@
 library(shiny)
-library(tidyverse)
-library(lubridate)
-library(caret)
-library(ggplot2)
+
 
 # Define server logic
 server <- function(input, output) {
   
   # Carga del modelo
-  model <- readRDS("model.rds")
+  fit_rf <- readRDS("../output/fit_rf.rds")
   
   dataInput <- reactive({
     req(input$file1)
     inFile <- input$file1
-    df <- read.csv(inFile$datapath, stringsAsFactors = FALSE)
-    df$trans_hour <- hour(hms(substring(df$trans_date_trans_time, 12, 19)))
-    df <- df %>% select(-trans_date_trans_time, -is_fraud) # Asumiendo que 'is_fraud' no viene en el nuevo conjunto de datos
-    return(df)
+    df_input <- readr::read_csv(inFile$datapath) |> 
+      select(is_fraud, all_of(predictors)) |> 
+      mutate(
+        trans_hour = lubridate::hour(trans_date_trans_time), 
+        trans_date = as.Date(trans_date_trans_time), 
+        trans_date_trans_time = NULL
+      ) 
+    df_input <- rec |> 
+      bake(new_data = df_input)
+    return(df_input)
   })
   
   predictions <- reactive({
-    df <- dataInput()
-    # Asumiendo que se realiza el preprocesamiento necesario aquí
-    # Predecir usando el modelo cargado
-    # pred <- predict(model, newdata = df, type = "response")
-    # return(data.frame(Transacción = 1:nrow(df), Predicción = pred))
-    # Placeholder para el código de predicción
+    df_predict <- dataInput()
+    pred_is_fraud <- predict(fit_rf, df_predict, type = "prob")
+    return(
+      tibble(
+        Transacción = 1:nrow(pred_is_fraud), 
+        Predicción = pred_is_fraud$.pred_yes
+      )
+    )
   })
   
   # Outputs
@@ -59,7 +64,7 @@ server <- function(input, output) {
     },
     content = function(file) {
       predictions <- predictions()
-      write.csv(predictions, file)
+      write_csv(predictions, file)
     }
   )
 }

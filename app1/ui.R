@@ -2,7 +2,10 @@ ui <- fluidPage(
   titlePanel("Exploración de Fraude en Tarjetas de Crédito"),
   sidebarLayout(
     sidebarPanel(
-      helpText("Explora el conjunto de datos sobre fraude en tarjetas de crédito.")
+      helpText("Explora el conjunto de datos sobre fraude en tarjetas de crédito."), 
+      uiOutput("select_state")
+      
+      
     ),
     mainPanel(
       tabsetPanel(

@@ -1,15 +1,32 @@
 library(tidyverse)
-# library(caret)
-# library(ModelMetrics)
 library(tidymodels)
 
 df_credit <- read_csv("data/credit_card_fraud.csv")
 
+
+df_credit |> 
+  group_by(job) |> 
+  summarise(is_fraud = mean(is_fraud)) |> 
+  filter(is_fraud < 1) |> 
+  ggplot() + 
+  geom_col(aes(x = reorder(job, is_fraud), y = is_fraud)) + 
+  geom_hline(yintercept = mean(df_credit$is_fraud)) + 
+  coord_flip()
+
+
+predictors <- c(
+  "category", 
+  "amt", 
+  "state", 
+  "city_pop", 
+  # "job", 
+  "dob", 
+  "trans_date_trans_time"
+)
+
 # Procesamiento de la hora de la transacción
 df_model <- df_credit |> 
-  select(-merchant, -city, 
-         -contains("lat"), -contains("long"), 
-         -trans_num) |> 
+  select(is_fraud, all_of(predictors)) |> 
   mutate(
     trans_hour = hour(trans_date_trans_time), 
     trans_date = as.Date(trans_date_trans_time), 
@@ -17,7 +34,11 @@ df_model <- df_credit |>
   ) 
 
 rec <- recipe(~ ., data = df_model) |> 
-  step_dummy(category, state, job) |> 
+  step_dummy(
+    category, 
+    state
+    # job
+  ) |> 
   step_date(
     dob, trans_date, 
     features = c("dow", "week", "month"), 
@@ -41,13 +62,14 @@ fit_rf <- rf_with_seed |>
   set_args(mtry = 4) |> 
   fit(is_fraud ~ ., data = baked_data)
 
+saveRDS(fit_rf, "output/fit_rf.rds")
 
-parsnip:::tidy.model_fit(fit_rf)
-? parsnip:::predict.model_fit()
+
+# ? parsnip:::predict.model_fit()
 
 
 df_pred <- rec |> 
   prep(training = df_model) |> 
   bake(new_data = df_model)
 
-df_pred <- predict(fit_rf, df_pred)
+pred_is_fraud <- predict(fit_rf, df_pred, type = "prob")
