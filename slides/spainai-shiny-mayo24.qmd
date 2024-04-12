@@ -1,0 +1,191 @@
+---
+title: "Qué te ofrece Shiny"
+author: "Leonardo Hansa"
+format: 
+  revealjs: 
+    theme: 
+      - simple
+      - custom.scss
+    logo: img/LogoLH.png
+    transition: slide
+execute: 
+  eval: false
+  echo: true
+---
+
+# Por qué Shiny
+
+## PowerBI, referente
+
+::: {.incremental}
+
+- Microsoft
+- Tableros
+
+:::
+
+## Shiny, una alternativa
+
+::: {.incremental}
+
+- Software libre
+- Apps
+
+::: 
+
+... 
+
+Hay otras, sí. Yo cuento Shiny.
+
+## No solo tableros
+
+::: {.incremental}
+
+- Mostrar datos/resultados
+- Estandarización procesos
+- Interfaz web a modelos/procesos
+- ...
+
+:::
+
+
+# Qué es Shiny
+
+## Una librería de R...
+
+![Shiny se inicia como una librería de R de Posit](img/shinysite.png)
+
+::: aside
+Posit, PBC, _public-benefit corporation_, empresa que busca un beneficio en la sociedad mediante el desarrollo de herramientas para el análisis de datos.
+:::
+
+## ...pero es un ecosistema de desarrollo web para R y Python
+
+https://github.com/nanxstats/awesome-shiny-extensions
+
+# Para qué Shiny
+
+## Para todo {transition="slide-in zoom-out"}
+
+![](img/ejemplo1.png)
+
+::: aside
+https://shiny.posit.co/r/gallery/
+:::
+
+
+## Para todo {transition="zoom"}
+
+![](img/ejemplo2.png)
+
+## Para todo {transition="zoom-in slide-out"}
+
+![](img/ejemplo3.png)
+
+
+## Para qué lo uso yo
+
+- Interfaz web de procesos complejos
+- Explorador de conjuntos de datos
+  + Como un PowerBI, pero con las librerías de R
+- Documentación
+- Ejecución de modelos
+
+
+# Cómo puedes usar Shiny
+
+Lo puedes plantear en un solo script, pero me gusta empezar por dos: 
+
+- `ui.R`
+- `server.R`
+
+## ui.R
+
+```{r}
+#| label: ui
+library(shiny)
+
+ui <- fluidPage(
+  titlePanel("Exploración de Fraude en Tarjetas de Crédito"),
+  sidebarLayout(
+    sidebarPanel(
+      helpText("Explora el conjunto de datos sobre fraude en tarjetas de crédito.")
+    ),
+    mainPanel(
+      plotOutput("plotCategory")
+    )
+  )
+)
+```
+
+::: aside
+En `ui.R` escribes la interfaz.
+:::
+
+
+## server.R
+
+```{r}
+#| label: server
+library(shiny)
+library(ggplot2)
+theme_set(theme_light())
+
+server <- function(input, output) {
+  
+  df <- readr::read_csv("../data/credit_card_fraud.csv",
+                        show_col_types = FALSE)
+  
+  output$plotCategory <- renderPlot({
+    df |>
+      dplyr::count(category, sort = TRUE) |>
+      ggplot(aes(x = reorder(category, n), y = n)) +
+      geom_bar(stat = "identity") +
+      theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+      labs(
+        x = "Categoría", 
+        y = "Número de Transacciones", 
+        title = "Distribución por Categoría"
+      )
+  })
+}
+```
+
+::: aside
+En `server.R` escribes los procesos que gestionan el contenido.
+:::
+
+## El resultado
+
+![](img/shiny0.png)
+
+::: aside
+Sin interacción y fea en cantidad. Sí, ahora lo arreglamos.
+:::
+
+## App 1
+
+## App 2
+
+## App 3
+
+leonardohansa.com
+
+
+# Cómo puedes seguir aprendiendo
+
+## Combina con otras librerías
+
+- [Interacción con la API de OpenAI](https://irudnyts.github.io/openai/) 
+- [Extensiones ggplot2](https://exts.ggplot2.tidyverse.org/gallery/)
+
+## Referentes
+
+- [Veerle Van Leemput](https://www.youtube.com/@HypebrightBV)
+- [Albert Rapp](https://albert-rapp.de/)
+- [Matt Dancho](https://www.business-science.io/)
+
+
+
+# leonardohansa.com 
+
