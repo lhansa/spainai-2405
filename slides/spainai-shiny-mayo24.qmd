@@ -174,6 +174,17 @@ leonardohansa.com
 
 # Cómo puedes seguir aprendiendo
 
+## Combina con otras librerías
+
+- [Interacción con la API de OpenAI](https://irudnyts.github.io/openai/) 
+- [Extensiones ggplot2](https://exts.ggplot2.tidyverse.org/gallery/)
+
+## Referentes
+
+- [Veerle Van Leemput](https://www.youtube.com/@HypebrightBV)
+- [Albert Rapp](https://albert-rapp.de/)
+- [Matt Dancho](https://www.business-science.io/)
+
 
 
 # leonardohansa.com 
