@@ -3,7 +3,7 @@ ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
       helpText("Explora el conjunto de datos sobre fraude en tarjetas de crédito."), 
-      uiOutput("select_state"),
+      # uiOutput("select_state"),
       
       
       textOutput("text_chatgpt")

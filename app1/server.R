@@ -38,18 +38,18 @@ server <- function(input, output) {
     )
   })
   
-  df_work <- reactive({
-    df_out <- df_credit
-    
-    if (input$sel_state != "todos") {
-      df_out <- df_credit |> 
-        filter(state %in% input$sel_state)  
-    }
-    
-    df_out
-    
-  })
-  
+  # df_work <- reactive({
+  #   df_out <- df_credit
+  #   
+  #   if (input$sel_state != "todos") {
+  #     df_out <- df_credit |> 
+  #       filter(state %in% input$sel_state)  
+  #   }
+  #   
+  #   df_out
+  #   
+  # })
+  # 
   # Exploración 1: Distribución de transacciones por categoría
   output$plot_category <- renderPlot({
     df |>
