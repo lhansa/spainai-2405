@@ -1,7 +1,29 @@
 library(tidymodels)
 library(tidyverse)
+library(leaflet)
 
-df_credit <- readr::read_csv("../data/credit_card_fraud.csv")
+df_credit <- readr::read_csv(
+  "../data/credit_card_fraud.csv", 
+    col_types = cols(
+      trans_date_trans_time = col_datetime(format = ""),
+      merchant = col_character(),
+      category = col_character(),
+      amt = col_double(),
+      city = col_character(),
+      state = col_character(),
+      lat = col_double(),
+      long = col_double(),
+      city_pop = col_double(),
+      job = col_character(),
+      dob = col_date(format = ""),
+      trans_num = col_character(),
+      merch_lat = col_double(),
+      merch_long = col_double(),
+      is_fraud = col_double()
+    )
+)
+
+estados <- unique(df_credit$state)
 
 predictors <- c(
   "category", 
@@ -36,3 +58,5 @@ rec <- recipe(~ ., data = df_model) |>
 
 
   # bake(new_data = NULL)
+
+umbral <- mean(df_credit$is_fraud == 1)
