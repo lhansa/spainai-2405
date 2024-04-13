@@ -8,10 +8,15 @@ format:
       - custom.scss
     logo: img/LogoLH.png
     transition: slide
+    toc: true
+    toc-depth: 1
 execute: 
   eval: false
   echo: true
 ---
+
+# Quién soy yo {.unnumbered .unlisted}
+
 
 # Por qué Shiny
 
@@ -33,8 +38,6 @@ execute:
 
 ::: 
 
-... 
-
 Hay otras, sí. Yo cuento Shiny.
 
 ## No solo tableros
@@ -44,7 +47,6 @@ Hay otras, sí. Yo cuento Shiny.
 - Mostrar datos/resultados
 - Estandarización procesos
 - Interfaz web a modelos/procesos
-- ...
 
 :::
 
@@ -174,10 +176,48 @@ leonardohansa.com
 
 # Cómo puedes seguir aprendiendo
 
+## Es un ecosistema muy bien documentado
+
+- [Tutorial de Posit desde cero.](https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/index.html) Sin duda, empieza por aquí.
+- _Mastering Shiny,_ un [libro online](https://mastering-shiny.org/) muy recomendable para cuando sepas que quieres meter shiny en tu día a día.
+- Y el paso definitivo, cómo [alojar en un servidor](https://posit.co/products/open-source/shinyserver/) tu app para que otros accedan
+
+
 ## Combina con otras librerías
 
 - [Interacción con la API de OpenAI](https://irudnyts.github.io/openai/) 
 - [Extensiones ggplot2](https://exts.ggplot2.tidyverse.org/gallery/)
+- [Leaflet para R](https://rstudio.github.io/leaflet/)
+
+## ¿Prefieres Python?
+
+```{python}
+#| label: shiny-python
+#| echo: true
+#| eval: false
+
+from shiny.express import input, render, ui
+
+ui.input_selectize(
+    "var", "Select variable",
+    choices=["bill_length_mm", "body_mass_g"]
+)
+
+@render.plot
+def hist():
+    from matplotlib import pyplot as plt
+    from palmerpenguins import load_penguins
+
+    df = load_penguins()
+    df[input.var()].hist(grid=False)
+    plt.xlabel(input.var())
+    plt.ylabel("count")
+```
+
+::: aside
+https://shiny.posit.co/py/
+:::
+
 
 ## Referentes
 
@@ -187,5 +227,5 @@ leonardohansa.com
 
 
 
-# leonardohansa.com 
+# leonardohansa.com {.unnumbered .unlisted}
 
