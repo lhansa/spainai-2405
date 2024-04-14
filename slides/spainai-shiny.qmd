@@ -2,6 +2,8 @@
 title: "R Shiny"
 subtitle: "Para qué te sirve y cómo empezaría yo de nuevo"
 author: "Leonardo Hansa"
+date: 05/23/2024
+date-format: "D/M/YYYY"
 format: 
   revealjs: 
     theme: 
