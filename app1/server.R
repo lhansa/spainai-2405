@@ -2,6 +2,7 @@ library(shiny)
 library(readr)
 library(dplyr)
 library(ggplot2)
+library(stringr)
 library(openai)
 library(plotly)
 
@@ -83,11 +84,22 @@ server <- function(input, output) {
   })
   
   output$text_chatgpt <- renderText({
-    "Los datos están bien."
-    # create_completion(
+    # data <- df |>
+    #   group_by(job) |>
+    #   summarise(frauds = sum(is_fraud)) |>
+    #   arrange(desc(frauds))
+    # api_out <- openai::create_completion(
     #   model = "gpt-3.5-turbo-instruct",
-    #   prompt = "Generate a question and an answer"
+    #   prompt = sprintf("De acuerdo con el siguiente data frame, cita los jobs con más fraudes y da sugerencias de por qué ocurre: %s ", data), 
+    #   max_tokens = 64
     # )
+    # api_out$choices$text
+    # saveRDS(api_out, "app1/api_out.rds")
+    api_out <- readRDS("api_out.rds")
+    
+    api_out$choices$text |> 
+      str_c(collapse = ". ") |> 
+      str_remove("n")
   })
 }
 

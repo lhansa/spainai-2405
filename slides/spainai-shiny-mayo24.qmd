@@ -1,5 +1,6 @@
 ---
-title: "Qué te ofrece Shiny"
+title: "R Shiny"
+subtitle: "Para qué te sirve y cómo empezaría yo de nuevo"
 author: "Leonardo Hansa"
 format: 
   revealjs: 
@@ -10,12 +11,38 @@ format:
     transition: slide
     toc: true
     toc-depth: 1
+    toc-title: "Qué te voy a contar"
 execute: 
   eval: false
   echo: true
 ---
 
-# Quién soy yo {.unnumbered .unlisted}
+# Una historia antes {.unnumbered .unlisted}
+
+## Parte 1
+
+:::: {.columns}
+
+::: {.column width="60%"}
+
+::: {.incremental}
+- Llego a mi primer trabajo... ni idea de nada.
+- Se va uno que mantiene varias Shiny apps.
+- Y me toca mantenerlos a mí, que sigo sin tener ni idea de nada.
+- El comienzo de una era.
+:::
+:::
+
+::: {.column width="40%"}
+![](img/leonardo hansa 01.jpg)
+
+:::
+
+::::
+
+## Parte 2
+
+![](img/r-hispano.jpg){style="box-shadow: 0px 0px 0px"}
 
 
 # Por qué Shiny
@@ -63,7 +90,13 @@ Posit, PBC, _public-benefit corporation_, empresa que busca un beneficio en la s
 
 ## ...pero es un ecosistema de desarrollo web para R y Python
 
+![](img/shiny-extensions.png){width=30% fig-align="center"}
+
+::: aside
+
 https://github.com/nanxstats/awesome-shiny-extensions
+
+:::
 
 # Para qué Shiny
 
@@ -167,7 +200,11 @@ Sin interacción y fea en cantidad. Sí, ahora lo arreglamos.
 
 ## App 1
 
+![](img/shiny1.png)
+
 ## App 2
+
+![](img/shiny2.png)
 
 ## App 3
 
@@ -185,9 +222,9 @@ leonardohansa.com
 
 ## Combina con otras librerías
 
-- [Interacción con la API de OpenAI](https://irudnyts.github.io/openai/) 
-- [Extensiones ggplot2](https://exts.ggplot2.tidyverse.org/gallery/)
-- [Leaflet para R](https://rstudio.github.io/leaflet/)
+- Interacción con la [API de OpenAI](https://irudnyts.github.io/openai/) 
+- Extensiones [ggplot2](https://exts.ggplot2.tidyverse.org/gallery/)
+- [Leaflet](https://rstudio.github.io/leaflet/) para R
 
 ## ¿Prefieres Python?
 
