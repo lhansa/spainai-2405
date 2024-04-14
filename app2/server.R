@@ -95,6 +95,10 @@ server <- function(input, output) {
   })
   
   output$leaflet_prob <- renderLeaflet({
+    
+    # if (!is.null(react_filtered())) {
+    #   browser()
+    # }
     df_leaflet <- react_filtered() |> 
       select(lat, long, prob, etiqueta) |> 
       filter(etiqueta == 1) |> 
