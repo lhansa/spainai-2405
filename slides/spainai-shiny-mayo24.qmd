@@ -208,6 +208,8 @@ Sin interacción y fea en cantidad. Sí, ahora lo arreglamos.
 
 ## App 3
 
+![](img/shiny3.png)
+
 leonardohansa.com
 
 
@@ -225,6 +227,10 @@ leonardohansa.com
 - Interacción con la [API de OpenAI](https://irudnyts.github.io/openai/) 
 - Extensiones [ggplot2](https://exts.ggplot2.tidyverse.org/gallery/)
 - [Leaflet](https://rstudio.github.io/leaflet/) para R
+
+## Tu nuevo mejor amigo
+
+Aprende a usar la función `browser()`
 
 ## ¿Prefieres Python?
 
