@@ -38,18 +38,8 @@ server <- function(input, output) {
     )
   })
   
-  # df_work <- reactive({
-  #   df_out <- df_credit
-  #   
-  #   if (input$sel_state != "todos") {
-  #     df_out <- df_credit |> 
-  #       filter(state %in% input$sel_state)  
-  #   }
-  #   
-  #   df_out
-  #   
-  # })
-  # 
+  # TODO Adaptar data frame a reactive para utilizar filtro
+  # TODO Añadir selectInput en ui para filtro de estado.
   # Exploración 1: Distribución de transacciones por categoría
   output$plot_category <- renderPlot({
     df |>
