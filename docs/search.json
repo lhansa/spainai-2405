@@ -1,0 +1,156 @@
+[
+  {
+    "objectID": "spainai-shiny.html#parte-1",
+    "href": "spainai-shiny.html#parte-1",
+    "title": "R Shiny",
+    "section": "Parte 1",
+    "text": "Parte 1\n\n\n\n\nLlego a mi primer trabajo… ni idea de nada.\nSe va uno que mantiene varias Shiny apps.\nY me toca mantenerlos a mí, que sigo sin tener ni idea de nada.\nEl comienzo de una era."
+  },
+  {
+    "objectID": "spainai-shiny.html#parte-2",
+    "href": "spainai-shiny.html#parte-2",
+    "title": "R Shiny",
+    "section": "Parte 2",
+    "text": "Parte 2"
+  },
+  {
+    "objectID": "spainai-shiny.html#powerbi-referente",
+    "href": "spainai-shiny.html#powerbi-referente",
+    "title": "R Shiny",
+    "section": "PowerBI, referente",
+    "text": "PowerBI, referente\n\n\nMicrosoft\nTableros"
+  },
+  {
+    "objectID": "spainai-shiny.html#shiny-una-alternativa",
+    "href": "spainai-shiny.html#shiny-una-alternativa",
+    "title": "R Shiny",
+    "section": "Shiny, una alternativa",
+    "text": "Shiny, una alternativa\n\n\nSoftware libre\nApps\n\n\nHay otras, sí. Yo cuento Shiny."
+  },
+  {
+    "objectID": "spainai-shiny.html#no-solo-tableros",
+    "href": "spainai-shiny.html#no-solo-tableros",
+    "title": "R Shiny",
+    "section": "No solo tableros",
+    "text": "No solo tableros\n\n\nMostrar datos/resultados\nEstandarización procesos\nInterfaz web a modelos/procesos"
+  },
+  {
+    "objectID": "spainai-shiny.html#una-librería-de-r",
+    "href": "spainai-shiny.html#una-librería-de-r",
+    "title": "R Shiny",
+    "section": "Una librería de R…",
+    "text": "Una librería de R…\n\n\n\nShiny se inicia como una librería de R de Posit\n\n\n\n\nPosit, PBC, public-benefit corporation, empresa que busca un beneficio en la sociedad mediante el desarrollo de herramientas para el análisis de datos."
+  },
+  {
+    "objectID": "spainai-shiny.html#pero-es-un-ecosistema-de-desarrollo-web-para-r-y-python",
+    "href": "spainai-shiny.html#pero-es-un-ecosistema-de-desarrollo-web-para-r-y-python",
+    "title": "R Shiny",
+    "section": "…pero es un ecosistema de desarrollo web para R y Python",
+    "text": "…pero es un ecosistema de desarrollo web para R y Python\n\n\n\n\n\n\n\nhttps://github.com/nanxstats/awesome-shiny-extensions"
+  },
+  {
+    "objectID": "spainai-shiny.html#para-todo",
+    "href": "spainai-shiny.html#para-todo",
+    "title": "R Shiny",
+    "section": "Para todo",
+    "text": "Para todo\n\n\n\nhttps://shiny.posit.co/r/gallery/"
+  },
+  {
+    "objectID": "spainai-shiny.html#para-todo-1",
+    "href": "spainai-shiny.html#para-todo-1",
+    "title": "R Shiny",
+    "section": "Para todo",
+    "text": "Para todo"
+  },
+  {
+    "objectID": "spainai-shiny.html#para-todo-2",
+    "href": "spainai-shiny.html#para-todo-2",
+    "title": "R Shiny",
+    "section": "Para todo",
+    "text": "Para todo"
+  },
+  {
+    "objectID": "spainai-shiny.html#para-qué-lo-uso-yo",
+    "href": "spainai-shiny.html#para-qué-lo-uso-yo",
+    "title": "R Shiny",
+    "section": "Para qué lo uso yo",
+    "text": "Para qué lo uso yo\n\nInterfaz web de procesos complejos\nExplorador de conjuntos de datos\n\nComo un PowerBI, pero con las librerías de R\n\nDocumentación\nEjecución de modelos"
+  },
+  {
+    "objectID": "spainai-shiny.html#ui.r",
+    "href": "spainai-shiny.html#ui.r",
+    "title": "R Shiny",
+    "section": "ui.R",
+    "text": "ui.R\n\nlibrary(shiny)\n\nui <- fluidPage(\n  titlePanel(\"Exploración de Fraude en Tarjetas de Crédito\"),\n  sidebarLayout(\n    sidebarPanel(\n      helpText(\"Explora el conjunto de datos sobre fraude en tarjetas de crédito.\")\n    ),\n    mainPanel(\n      plotOutput(\"plotCategory\")\n    )\n  )\n)\n\n\n\nEn ui.R escribes la interfaz."
+  },
+  {
+    "objectID": "spainai-shiny.html#server.r",
+    "href": "spainai-shiny.html#server.r",
+    "title": "R Shiny",
+    "section": "server.R",
+    "text": "server.R\n\nlibrary(shiny)\nlibrary(ggplot2)\ntheme_set(theme_light())\n\nserver <- function(input, output) {\n  \n  df <- readr::read_csv(\"../data/credit_card_fraud.csv\",\n                        show_col_types = FALSE)\n  \n  output$plotCategory <- renderPlot({\n    df |>\n      dplyr::count(category, sort = TRUE) |>\n      ggplot(aes(x = reorder(category, n), y = n)) +\n      geom_bar(stat = \"identity\") +\n      theme(axis.text.x = element_text(angle = 45, hjust = 1)) +\n      labs(\n        x = \"Categoría\", \n        y = \"Número de Transacciones\", \n        title = \"Distribución por Categoría\"\n      )\n  })\n}\n\n\n\nEn server.R escribes los procesos que gestionan el contenido."
+  },
+  {
+    "objectID": "spainai-shiny.html#el-resultado",
+    "href": "spainai-shiny.html#el-resultado",
+    "title": "R Shiny",
+    "section": "El resultado",
+    "text": "El resultado\n\n\n\nSin interacción y fea en cantidad. Sí, ahora lo arreglamos."
+  },
+  {
+    "objectID": "spainai-shiny.html#app-1",
+    "href": "spainai-shiny.html#app-1",
+    "title": "R Shiny",
+    "section": "App 1",
+    "text": "App 1"
+  },
+  {
+    "objectID": "spainai-shiny.html#app-2",
+    "href": "spainai-shiny.html#app-2",
+    "title": "R Shiny",
+    "section": "App 2",
+    "text": "App 2"
+  },
+  {
+    "objectID": "spainai-shiny.html#app-3",
+    "href": "spainai-shiny.html#app-3",
+    "title": "R Shiny",
+    "section": "App 3",
+    "text": "App 3\n\nleonardohansa.com"
+  },
+  {
+    "objectID": "spainai-shiny.html#es-un-ecosistema-muy-bien-documentado",
+    "href": "spainai-shiny.html#es-un-ecosistema-muy-bien-documentado",
+    "title": "R Shiny",
+    "section": "Es un ecosistema muy bien documentado",
+    "text": "Es un ecosistema muy bien documentado\n\nTutorial de Posit desde cero. Sin duda, empieza por aquí.\nMastering Shiny, un libro online muy recomendable para cuando sepas que quieres meter shiny en tu día a día.\nY el paso definitivo, cómo alojar en un servidor tu app para que otros accedan"
+  },
+  {
+    "objectID": "spainai-shiny.html#combina-con-otras-librerías",
+    "href": "spainai-shiny.html#combina-con-otras-librerías",
+    "title": "R Shiny",
+    "section": "Combina con otras librerías",
+    "text": "Combina con otras librerías\n\nInteracción con la API de OpenAI\nExtensiones ggplot2\nLeaflet para R"
+  },
+  {
+    "objectID": "spainai-shiny.html#tu-nuevo-mejor-amigo",
+    "href": "spainai-shiny.html#tu-nuevo-mejor-amigo",
+    "title": "R Shiny",
+    "section": "Tu nuevo mejor amigo",
+    "text": "Tu nuevo mejor amigo\nAprende a usar la función browser()"
+  },
+  {
+    "objectID": "spainai-shiny.html#prefieres-python",
+    "href": "spainai-shiny.html#prefieres-python",
+    "title": "R Shiny",
+    "section": "¿Prefieres Python?",
+    "text": "¿Prefieres Python?\n\nfrom shiny.express import input, render, ui\n\nui.input_selectize(\n    \"var\", \"Select variable\",\n    choices=[\"bill_length_mm\", \"body_mass_g\"]\n)\n\n@render.plot\ndef hist():\n    from matplotlib import pyplot as plt\n    from palmerpenguins import load_penguins\n\n    df = load_penguins()\n    df[input.var()].hist(grid=False)\n    plt.xlabel(input.var())\n    plt.ylabel(\"count\")\n\n\n\nhttps://shiny.posit.co/py/"
+  },
+  {
+    "objectID": "spainai-shiny.html#referentes",
+    "href": "spainai-shiny.html#referentes",
+    "title": "R Shiny",
+    "section": "Referentes",
+    "text": "Referentes\n\nVeerle Van Leemput\nAlbert Rapp\nMatt Dancho"
+  }
+]
