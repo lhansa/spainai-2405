@@ -159,5 +159,19 @@
     "title": "R Shiny",
     "section": "Parte 3",
     "text": "Parte 3"
+  },
+  {
+    "objectID": "spainai-shiny.html#app-1-1",
+    "href": "spainai-shiny.html#app-1-1",
+    "title": "R Shiny",
+    "section": "App 1",
+    "text": "App 1\nEjercicio. Sustituye el primer gráfico (Categoría) por uno de plotly (como el tercero).\nEjercicio. Sustituye el tercer gráfico (Fraudes por Estado) por los mismos datos en una tabla."
+  },
+  {
+    "objectID": "spainai-shiny.html#app-2-1",
+    "href": "spainai-shiny.html#app-2-1",
+    "title": "R Shiny",
+    "section": "App 2",
+    "text": "App 2\nEjercicio. Cambia el nombre de fichero que se exporta, de forma que incluya los nombres (siglas) de estados."
   }
 ]

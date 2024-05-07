@@ -30,7 +30,7 @@ execute:
 ::: {.incremental}
 - Llego a mi primer trabajo... ni idea de nada.
 - Se va uno que mantiene varias Shiny apps.
-- Y me toca mantenerlos a mí, que sigo sin tener ni idea de nada.
+- Y me toca mantenerlas a mí, que sigo sin tener ni idea de nada.
 - El comienzo de una era.
 :::
 :::
@@ -208,9 +208,21 @@ Sin interacción y fea en cantidad. Sí, ahora lo arreglamos.
 
 ![](img/shiny1.png)
 
+## App 1
+
+**Ejercicio.** Sustituye el primer gráfico (_Categoría_) por uno de plotly (como el tercero).
+
+**Ejercicio.** Sustituye el tercer gráfico (_Fraudes por Estado_) por los mismos datos en una tabla.
+
+
 ## App 2
 
 ![](img/shiny2.png)
+
+## App 2
+
+**Ejercicio.** Cambia el nombre de fichero que se exporta, de forma que
+incluya los nombres (siglas) de estados.
 
 ## App 3
 
