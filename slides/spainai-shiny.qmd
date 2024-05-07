@@ -46,6 +46,10 @@ execute:
 
 ![](img/r-hispano.jpg){style="box-shadow: 0px 0px 0px"}
 
+## Parte 3
+
+![](img/Ebiquity_Logo.png){style="box-shadow: 0px 0px 0px"}
+
 
 # Por qué Shiny
 
