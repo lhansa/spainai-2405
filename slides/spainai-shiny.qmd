@@ -126,6 +126,26 @@ https://shiny.posit.co/r/gallery/
 
 ## Para qué lo uso yo
 
+:::: {.columns}
+
+::: {.column width="50%"}
+
+![](img/eg_chart_generator.png)
+![](img/eg_forecast.png)
+
+:::
+
+::: {.column width="50%"}
+
+![](img/eg_stl.png)
+![](img/eg_ga.png)
+
+:::
+
+::::
+
+## Para qué lo uso yo
+
 - Interfaz web de procesos complejos
 - Explorador de conjuntos de datos
   + Como un PowerBI, pero con las librerías de R
