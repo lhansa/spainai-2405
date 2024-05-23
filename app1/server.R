@@ -58,7 +58,8 @@ server <- function(input, output) {
       ggplot(aes(x = reorder(state, TotalAmount), y = TotalAmount)) +
       geom_bar(stat = "identity") +
       theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-      labs(x = "Estado", y = "Monto Total", title = "Monto de Transacciones por Estado")
+      labs(x = "Estado", y = "Monto Total", 
+           title = "Monto de Transacciones por Estado")
     
     ggplotly(P)
   })

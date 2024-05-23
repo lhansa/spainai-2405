@@ -65,9 +65,6 @@ fit_rf <- rf_with_seed |>
 saveRDS(fit_rf, "output/fit_rf.rds")
 
 
-# ? parsnip:::predict.model_fit()
-
-
 df_pred <- rec |> 
   prep(training = df_model) |> 
   bake(new_data = df_model)
