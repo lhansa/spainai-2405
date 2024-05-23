@@ -244,7 +244,7 @@ Sin interacción y fea en cantidad. Sí, ahora lo arreglamos.
 **Ejercicio.** Cambia el nombre de fichero que se exporta, de forma que
 incluya los nombres (siglas) de estados.
 
-**Ejercicio.** Completa los `TODO`s de la _app 1_ con lo aprendido en la _app 2_.
+**Ejercicio.** Completa los `TODO`s (app 1 y 2) con lo aprendido en la app 2.
 
 ## App 3
 
