@@ -74,7 +74,7 @@
     "href": "spainai-shiny.html#para-qué-lo-uso-yo",
     "title": "R Shiny",
     "section": "Para qué lo uso yo",
-    "text": "Para qué lo uso yo\n\nInterfaz web de procesos complejos\nExplorador de conjuntos de datos\n\nComo un PowerBI, pero con las librerías de R\n\nDocumentación\nEjecución de modelos"
+    "text": "Para qué lo uso yo"
   },
   {
     "objectID": "spainai-shiny.html#ui.r",
@@ -173,5 +173,12 @@
     "title": "R Shiny",
     "section": "App 2",
     "text": "App 2\nEjercicio. Cambia el nombre de fichero que se exporta, de forma que incluya los nombres (siglas) de estados."
+  },
+  {
+    "objectID": "spainai-shiny.html#para-qué-lo-uso-yo-1",
+    "href": "spainai-shiny.html#para-qué-lo-uso-yo-1",
+    "title": "R Shiny",
+    "section": "Para qué lo uso yo",
+    "text": "Para qué lo uso yo\n\nInterfaz web de procesos complejos\nExplorador de conjuntos de datos\n\nComo un PowerBI, pero con las librerías de R\n\nDocumentación\nEjecución de modelos"
   }
 ]
