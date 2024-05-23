@@ -30,15 +30,7 @@ server <- function(input, output) {
       is_fraud = col_double()
     )
   )
-  output$select_state <- renderUI({
-    shiny::selectInput(
-      inputId = "sel_state", 
-      label = "State", 
-      choices = c("todos", unique(df_credit$state)), 
-      selected = "todos"
-    )
-  })
-  
+ 
   # TODO Adaptar data frame a reactive para utilizar filtro
   # TODO Añadir selectInput en ui para filtro de estado.
   # Exploración 1: Distribución de transacciones por categoría
