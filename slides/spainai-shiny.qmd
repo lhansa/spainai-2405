@@ -285,6 +285,7 @@ https://shiny.posit.co/py/
 - [Veerle Van Leemput](https://www.youtube.com/@HypebrightBV)
 - [Albert Rapp](https://albert-rapp.de/)
 - [Matt Dancho](https://www.business-science.io/)
+- [Appsilon](https://www.appsilon.com/)
 
 
 
