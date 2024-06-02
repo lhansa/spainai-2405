@@ -11,6 +11,7 @@
 
 **Diapositivas** que utilizaré para contexto, están disponibles [aquí](https://lhansa.github.io/spainai-2405/)
 
+Los datos (2 ficheros) están en [esta carpeta](https://drive.google.com/drive/folders/1RF-sLe7ENxNuPvzt-lSn_yUb6cOZJ1LN?usp=drive_link) y un objeto con un modelo estadístico que se usa lo tienes [aquí](https://drive.google.com/file/d/1YqkFNYmA7bKbDb4eCcjcoW3pm_TrUn6N/view?usp=sharing).
 
 ## Preparativos
 
